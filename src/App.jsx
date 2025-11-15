@@ -200,6 +200,21 @@ const decryptKeyWithPassphrase = async (encryptedData, passphrase) => {
 };
 
 function App() {
+  // Inject mobile responsive CSS
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.textContent = `
+    @media (max-width: 600px) {
+      .messagesContainer { padding: 8px !important; }
+      .inputContainer { flex-wrap: wrap !important; padding: 10px !important; }
+      .message { max-width: 90% !important; font-size: 14px !important; }
+      .callModalContent, .imagePreviewContent { width: 90% !important; padding: 16px !important; }
+    }
+  `;
+    document.head.appendChild(style);
+    return () => document.head.removeChild(style);
+  }, []);
+
   const [userId, setUserId] = useState("");
   const [username, setUsername] = useState("");
   const [partnerId, setPartnerId] = useState("");
